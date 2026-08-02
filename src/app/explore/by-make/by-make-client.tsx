@@ -33,6 +33,8 @@ export function ByMakeClient({ data }: { data: any[] }) {
     .sort((a, b) => (b[selectedMetric] ?? 0) - (a[selectedMetric] ?? 0))
     .slice(0, parseInt(topN));
 
+  const chartHeight = Math.max(320, sorted.length * 24);
+
   const metricInfo = METRICS.find((m) => m.key === selectedMetric);
   const metricLabel = metricInfo?.label ?? selectedMetric;
   const metricColor = COLORS[METRICS.findIndex((m) => m.key === selectedMetric)] ?? "#2563eb";
@@ -74,11 +76,11 @@ export function ByMakeClient({ data }: { data: any[] }) {
           <CardTitle>{metricLabel} Index by Make</CardTitle>
         </CardHeader>
         <CardContent>
-          <ResponsiveContainer width="100%" height={400}>
+          <ResponsiveContainer width="100%" height={chartHeight}>
             <BarChart data={sorted} layout="vertical" margin={{ left: 80, right: 20 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
               <XAxis type="number" domain={[0, "auto"]} />
-              <YAxis type="category" dataKey="make" width={100} fontSize={12} />
+              <YAxis type="category" dataKey="make" width={110} fontSize={12} interval={0} />
               <Tooltip formatter={(value) => `${value ?? "—"} (100 = avg)`} />
               <Bar dataKey={selectedMetric} fill={metricColor} radius={[0, 4, 4, 0]} />
             </BarChart>
