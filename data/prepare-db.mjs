@@ -40,6 +40,9 @@ mkdirSync(DATA_DIR, { recursive: true });
 const db = new Database(DB_PATH);
 const sql = readFileSync(SEED_PATH, "utf-8");
 db.exec(sql);
+// Flush WAL into main .db file so the committed artifact is self-contained
+// (Vercel deploys only bundle the .db, not the .db-wal)
+db.exec("PRAGMA wal_checkpoint(TRUNCATE)");
 db.close();
 
 console.log(`✅  data/hcmu.db ready`);
