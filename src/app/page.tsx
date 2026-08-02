@@ -37,17 +37,6 @@ export default function LandingPage() {
             <BarChart3 className="h-6 w-6 text-primary" />
             <span>HCMU Explorer</span>
           </div>
-          <div className="flex items-center gap-4">
-            <Link href="/explore" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Dashboard
-            </Link>
-            <Link href="/explore/browse" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Browse Data
-            </Link>
-            <Link href="/explore">
-              <Button size="sm">Explore Now</Button>
-            </Link>
-          </div>
         </div>
       </header>
 
@@ -56,10 +45,6 @@ export default function LandingPage() {
         <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
             <div className="max-w-3xl">
-              <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-medium px-3 py-1 rounded-full mb-6">
-                <Database className="h-3.5 w-3.5" />
-                Insurance Bureau of Canada
-              </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
                 How Cars{" "}
                 <span className="text-primary">Measure Up</span>
