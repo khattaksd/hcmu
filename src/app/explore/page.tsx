@@ -104,7 +104,7 @@ export default function ExploreOverviewPage() {
         </CardHeader>
         <CardContent>
           <TooltipProvider delay={400}>
-          <div className="grid grid-cols-5 gap-4 text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-center">
             {METRICS.map((m) => {
               const val = stats.avgIndexes?.[m.key as keyof typeof stats.avgIndexes];
               return (
@@ -131,7 +131,7 @@ export default function ExploreOverviewPage() {
           <CardTitle>Vehicles by Body Style</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
             {stats.bodyStyles.map((row) => (
               <div key={row.body_style} className="text-center">
                 <p className="text-2xl font-bold">{row.count}</p>
@@ -171,7 +171,7 @@ export default function ExploreOverviewPage() {
             All indexes are relative to 100 (the average). A score of 122 means 22% above
             average claim costs; 87 means 13% below average.
           </p>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {METRICS.map((m) => (
               <div key={m.key}>
                 <span className="font-semibold text-foreground">{m.label}:</span>{" "}

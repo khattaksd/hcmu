@@ -107,8 +107,9 @@ export function TrendsClient() {
     <div className="space-y-4">
       {/* Controls */}
       <div className="flex flex-wrap gap-4">
+        <div className="w-full sm:w-auto">
         <Select value={make} onValueChange={(v) => setMake(v ?? "")}>
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-full sm:w-[200px]">
             <SelectValue placeholder="All Makes" />
           </SelectTrigger>
           <SelectContent>
@@ -117,8 +118,10 @@ export function TrendsClient() {
           </SelectContent>
         </Select>
 
+        </div>
+        <div className="w-full sm:w-auto">
         <Select value={bodyStyle} onValueChange={(v) => setBodyStyle(v ?? "")}>
-          <SelectTrigger className="w-[160px]">
+          <SelectTrigger className="w-full sm:w-[160px]">
             <SelectValue placeholder="All Body Styles" />
           </SelectTrigger>
           <SelectContent>
@@ -126,6 +129,7 @@ export function TrendsClient() {
             {(filters?.bodyStyles ?? []).map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}
           </SelectContent>
         </Select>
+        </div>
       </div>
 
       {/* Metric toggles */}

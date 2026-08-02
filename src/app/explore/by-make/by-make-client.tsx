@@ -43,8 +43,9 @@ export function ByMakeClient({ data }: { data: any[] }) {
     <div className="space-y-6">
       {/* Controls */}
       <div className="flex flex-wrap gap-4">
+        <div className="w-full sm:w-auto">
         <Select value={selectedMetric} onValueChange={(v) => setSelectedMetric(v ?? "avg_theft")}>
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-full sm:w-[200px]">
             <SelectValue placeholder="Select metric" />
           </SelectTrigger>
           <SelectContent>
@@ -53,8 +54,10 @@ export function ByMakeClient({ data }: { data: any[] }) {
             ))}
           </SelectContent>
         </Select>
+        </div>
+        <div className="w-full sm:w-auto">
         <Select value={topN} onValueChange={(v) => setTopN(v ?? "20")}>
-          <SelectTrigger className="w-[120px]">
+          <SelectTrigger className="w-full sm:w-[120px]">
             <SelectValue placeholder="Top N" />
           </SelectTrigger>
           <SelectContent>
@@ -63,6 +66,7 @@ export function ByMakeClient({ data }: { data: any[] }) {
             ))}
           </SelectContent>
         </Select>
+        </div>
       </div>
 
       {/* Metric description */}
@@ -77,10 +81,10 @@ export function ByMakeClient({ data }: { data: any[] }) {
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={chartHeight}>
-            <BarChart data={sorted} layout="vertical" margin={{ left: 80, right: 20 }}>
+            <BarChart data={sorted} layout="vertical" margin={{ left: 50, right: 20 }}>
               <CartesianGrid strokeDasharray="3 3" horizontal={false} />
               <XAxis type="number" domain={[0, "auto"]} />
-              <YAxis type="category" dataKey="make" width={110} fontSize={12} interval={0} />
+              <YAxis type="category" dataKey="make" width={80} fontSize={12} interval={0} />
               <Tooltip formatter={(value) => `${value ?? "—"} (100 = avg)`} />
               <Bar dataKey={selectedMetric} fill={metricColor} radius={[0, 4, 4, 0]} />
             </BarChart>
@@ -94,6 +98,7 @@ export function ByMakeClient({ data }: { data: any[] }) {
           <CardTitle>All Makes — Average Indexes</CardTitle>
         </CardHeader>
         <CardContent>
+          <div className="overflow-x-auto">
           <Table>
             <TableHeader>
               <TableRow>
@@ -122,6 +127,7 @@ export function ByMakeClient({ data }: { data: any[] }) {
               ))}
             </TableBody>
           </Table>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BarChart3 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/explore", label: "Overview" },
@@ -11,10 +13,20 @@ const links = [
   { href: "/explore/trends", label: "Trends Over Time" },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  onNavClick?: () => void;
+}
+
+export function Sidebar({ onNavClick }: SidebarProps) {
+  const pathname = usePathname();
+
   return (
-    <aside className="w-64 border-r bg-muted/30 p-4 flex flex-col gap-6">
-      <Link href="/" className="flex items-center gap-2 font-semibold text-lg hover:opacity-80 transition-opacity">
+    <aside className="flex h-full flex-col gap-6 p-4">
+      <Link
+        href="/"
+        onClick={onNavClick}
+        className="flex items-center gap-2 font-semibold text-lg hover:opacity-80 transition-opacity"
+      >
         <BarChart3 className="h-6 w-6 text-primary" />
         <span>HCMU Explorer</span>
       </Link>
@@ -28,7 +40,13 @@ export function Sidebar() {
           <Link
             key={link.href}
             href={link.href}
-            className="rounded-md px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
+            onClick={onNavClick}
+            className={cn(
+              "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+              pathname === link.href
+                ? "bg-accent text-accent-foreground"
+                : "hover:bg-accent hover:text-accent-foreground"
+            )}
           >
             {link.label}
           </Link>

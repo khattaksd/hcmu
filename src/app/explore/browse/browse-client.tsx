@@ -110,8 +110,9 @@ export function BrowseClient({ filters }: { filters: Filters }) {
     <div className="space-y-4">
       {/* Filters */}
       <div className="flex flex-wrap gap-4">
+        <div className="w-full sm:w-auto">
         <Select value={make} onValueChange={(v) => { setMake(v ?? ""); setPage(1); }}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-full sm:w-[180px]">
             <SelectValue placeholder="All Makes" />
           </SelectTrigger>
           <SelectContent>
@@ -121,9 +122,11 @@ export function BrowseClient({ filters }: { filters: Filters }) {
             ))}
           </SelectContent>
         </Select>
+        </div>
 
+        <div className="w-full sm:w-auto">
         <Select value={bodyStyle} onValueChange={(v) => { setBodyStyle(v ?? ""); setPage(1); }}>
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-full sm:w-[140px]">
             <SelectValue placeholder="All Body Styles" />
           </SelectTrigger>
           <SelectContent>
@@ -133,9 +136,11 @@ export function BrowseClient({ filters }: { filters: Filters }) {
             ))}
           </SelectContent>
         </Select>
+        </div>
 
+        <div className="w-full sm:w-auto">
         <Select value={powerType} onValueChange={(v) => { setPowerType(v ?? ""); setPage(1); }}>
-          <SelectTrigger className="w-[200px]">
+          <SelectTrigger className="w-full sm:w-[200px]">
             <SelectValue placeholder="All Power Types" />
           </SelectTrigger>
           <SelectContent>
@@ -145,10 +150,11 @@ export function BrowseClient({ filters }: { filters: Filters }) {
             ))}
           </SelectContent>
         </Select>
+        </div>
       </div>
 
       {/* Table */}
-      <div className="border rounded-lg">
+      <div className="border rounded-lg overflow-x-auto">
         <Table>
           <TableHeader>
             <TableRow>
@@ -202,7 +208,7 @@ export function BrowseClient({ filters }: { filters: Filters }) {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between text-sm text-muted-foreground">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-muted-foreground">
         <span>
           {data
             ? `${Math.min((page - 1) * limit + 1, total)}–${Math.min(page * limit, total)} of ${total}`
