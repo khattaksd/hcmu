@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getDb } from "@/lib/db";
-import { BarChart3, TrendingUp, Search, Shield, ArrowRight, Truck, Database } from "lucide-react";
+import { BarChart3, TrendingUp, Search, Shield, ArrowRight, Truck } from "lucide-react";
 
 const METRICS = [
   { label: "Collision", desc: "Claim cost index for collision coverage" },
@@ -42,17 +42,16 @@ export default function LandingPage() {
 
       <main>
         {/* ────── Hero Section ────── */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-primary/10">
+        <section className="relative overflow-hidden bg-linear-to-br from-primary/5 via-background to-primary/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
             <div className="max-w-3xl">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight">
-                How Cars{" "}
-                <span className="text-primary">Measure Up</span>
+                How Cars Measure Up
               </h1>
               <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
                 Explore Canada&apos;s national vehicle insurance rate indexes. Compare claim costs
                 across <strong>{stats.makes} makes</strong>, <strong>{stats.total.toLocaleString()} vehicles</strong>,
-                and model years <strong>{stats.minYear}–{stats.maxYear}</strong> — all from the
+                and model years <strong>{stats.minYear}-{stats.maxYear}</strong> — all from the
                 Insurance Bureau of Canada&apos;s authoritative dataset.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
@@ -70,8 +69,8 @@ export default function LandingPage() {
             </div>
           </div>
           {/* Decorative gradient blob */}
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-20 -left-20 w-[300px] h-[300px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+          <div className="absolute -top-40 -right-40 w-125 h-125 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -left-20 w-75 h-75 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
         </section>
 
         {/* ────── Stats Bar ────── */}
@@ -273,11 +272,11 @@ export default function LandingPage() {
         </section>
 
         {/* ────── CTA ────── */}
-        <section className="bg-gradient-to-r from-primary/10 to-primary/5">
+        <section className="bg-linear-to-r from-primary/10 to-primary/5">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center">
             <h2 className="text-3xl font-bold tracking-tight">Ready to Explore?</h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Dive into {stats.total.toLocaleString()} vehicle records spanning {stats.minYear}–{stats.maxYear}.
+              Dive into {stats.total.toLocaleString()} vehicle records spanning {stats.minYear}-{stats.maxYear}.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link href="/explore">
