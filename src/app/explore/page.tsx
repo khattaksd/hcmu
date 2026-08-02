@@ -1,12 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { getDb } from "@/lib/db";
 
 const METRICS = [
-  { key: "collision", label: "Collision", description: "Collision insurance claim cost index" },
-  { key: "comp", label: "Comp", description: "Comprehensive insurance claim cost index (includes theft)" },
-  { key: "dcpd", label: "DCPD", description: "Direct Compensation Property Damage — claim cost when collision involves another insured driver" },
-  { key: "ab", label: "AB", description: "Accident Benefits — personal injury claim cost index" },
-  { key: "theft_frequency", label: "Theft", description: "Theft-related claim frequency index" },
+  { key: "avg_collision", label: "Collision", description: "Collision insurance claim cost index" },
+  { key: "avg_comp", label: "Comp", description: "Comprehensive insurance claim cost index (includes theft)" },
+  { key: "avg_dcpd", label: "DCPD", description: "Direct Compensation Property Damage — claim cost when collision involves another insured driver" },
+  { key: "avg_ab", label: "AB", description: "Accident Benefits — personal injury claim cost index" },
+  { key: "avg_theft", label: "Theft", description: "Theft-related claim frequency index" },
 ];
 
 function getOverviewStats() {
@@ -102,20 +103,25 @@ export default function ExploreOverviewPage() {
           <CardTitle>Average Indexes <span className="text-sm font-normal text-muted-foreground">(100 = average)</span></CardTitle>
         </CardHeader>
         <CardContent>
+          <TooltipProvider delay={400}>
           <div className="grid grid-cols-5 gap-4 text-center">
             {METRICS.map((m) => {
               const val = stats.avgIndexes?.[m.key as keyof typeof stats.avgIndexes];
               return (
-                <div key={m.key} className="group relative">
-                  <p className="text-sm text-muted-foreground cursor-help" title={m.description}>
-                    {m.label}
-                    <span className="ml-1 text-[10px] opacity-60 group-hover:opacity-100">ⓘ</span>
-                  </p>
+                <div key={m.key}>
+                  <Tooltip>
+                    <TooltipTrigger className="text-sm text-muted-foreground cursor-help">
+                      {m.label}
+                      <span className="ml-1 text-[10px]">ⓘ</span>
+                    </TooltipTrigger>
+                    <TooltipContent>{m.description}</TooltipContent>
+                  </Tooltip>
                   <p className="text-2xl font-bold">{val ?? "—"}</p>
                 </div>
               );
             })}
           </div>
+          </TooltipProvider>
         </CardContent>
       </Card>
 
